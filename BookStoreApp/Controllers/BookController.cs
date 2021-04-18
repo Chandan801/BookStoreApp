@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStoreApp.Models;
+using BookStoreApp.Repos;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +10,24 @@ namespace BookStoreApp.Controllers
 {
     public class BookController : Controller
     {
-        public string GetAllBooks()
+        private readonly BookRepo _bookRepo=null;
+        public BookController()
         {
-            return "All Books";
+            _bookRepo = new BookRepo();
         }
-        public string GetBook(int id)
+        public List<BookClass> GetAllBooks()
         {
-            return $"Id of the book is {id}";
+            return _bookRepo.GetAllBooks();
         }
-        public string SearchBooks(string bookName,string authorName)
+
+        public BookClass GetBook(int Id)
         {
-            return $"Book name is {bookName} and Author name is {authorName}";
+            return _bookRepo.GetBook();
+                
+        }
+        public List<BookClass> SearchBooks(string bookName,string authorName)
+        {
+            return _bookRepo.SearchBooks();
         }
     }
 }

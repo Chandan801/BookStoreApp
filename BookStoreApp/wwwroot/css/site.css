@@ -79,3 +79,6 @@ img {
     height: 50px;
     width: 80px
 }
+body {
+    padding-top: 56px;
+}
